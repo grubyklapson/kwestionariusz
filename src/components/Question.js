@@ -14,15 +14,15 @@ export const Question = (props) => {
   const editQuestion = props.editQuestion;
   const setUserChoices = props.setUserChoices;
   const userChoices = props.userChoices;
-  const getRecordById = props.getRecordById;
   const editHandler = () => {
     editToggle ? setEditToggle(false) : setEditToggle(true);
+    editQuestion(id, editedQuestion);
   };
   return (
     <div className="question" key={id}>
       <div className="question-header">
         {editToggle ? (
-          <h3>{text} {userChoiceValue}</h3>
+          <h3>{text} </h3>
         ) : (
           <input
             type="text"
@@ -60,7 +60,9 @@ export const Question = (props) => {
           <Option
             data={item}
             setUserChoiceValue={setUserChoiceValue}
+            userChoiceValue={userChoiceValue}
             setUserChoices={setUserChoices}
+            userChoices={userChoices}
             questionId={id}
           />
         ))}

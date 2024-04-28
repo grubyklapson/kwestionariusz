@@ -4,6 +4,7 @@ import { Question } from "./Question";
 import { AddQuestion } from "./AddQuestion";
 export const QuestionnaireCreator = () => {
   const [userChoices, setUserChoices] = useState([]);
+  const [info, setInfo] = useState("");
   const answers = ["Tak", "Raczej tak", "Nie wiem", "Raczej nie", "Nie"];
   const [questions, setQuestions] = useState([
     {
@@ -41,42 +42,45 @@ export const QuestionnaireCreator = () => {
         },
       ]);
   };
+  const getRecordById = (id) => {
+    const recordIndex = questions.findIndex(obj => obj.id === id);
+    return recordIndex;
+  };
   const deleteQuestion = (id) => {
     setQuestions(questions.filter((item) => item.id !== id));
   };
-  const editQuestion = (id) => {
+  const editQuestion = (id, value) => {
     const record = getRecordById(id);
+    questions[record].text = value;
   };
-  const getRecordById = (id) => {
-    const record = questions.find((x) => x.id === id);
-    return record;
+  const endHandler = () => {
+    setInfo("Pomyłsnie zakończono kwestionariusz.");
   };
   return (
     <div className="questionnaire-creator">
       <form onSubmit={submitHandler}>
-        {questions.map((questions) => (
-          <Question
-            data={questions}
-            getRecordById={getRecordById}
-            addQuestion={addQuestion}
-            deleteQuestion={deleteQuestion}
-            editQuestion={editQuestion}
-            setUserChoices={setUserChoices}
-            userChoices={userChoices}
-          />
-        ))}
+        {questions.length > 0 ? (
+          questions.map((questions) => (
+            <Question
+              data={questions}
+              getRecordById={getRecordById}
+              addQuestion={addQuestion}
+              deleteQuestion={deleteQuestion}
+              editQuestion={editQuestion}
+              setUserChoices={setUserChoices}
+              userChoices={userChoices}
+            />
+          ))
+        ) : (
+          <h3 style={{ color: "grey" }}>Brak pytań w kwestionariuszu</h3>
+        )}
 
         <AddQuestion data={answers} addQuestion={addQuestion} />
-        <button type="submit" className="end-btn">
+        <button type="submit" className="end-btn" onClick={endHandler}>
           Zakończ
         </button>
+        <h4>{info}</h4>
       </form>
-      {/* <div className="results">
-        <h2>Wyniki</h2>
-        {userChoices.map((item) => (
-          <p>{item}</p>
-        ))}
-      </div> */}
     </div>
   );
 };
