@@ -8,8 +8,6 @@ export const Option = (props) => {
   const setChoiceHandler = () => {
     setUserChoiceValue(answer);
     setUserChoices([...userChoices, { id: questionId, answer }]);
-    console.log(userChoices.includes({id: questionId, answer: userChoiceValue}));
-    console.log(userChoices)
   };
   return (
     <div className="Option" key={answer}>
