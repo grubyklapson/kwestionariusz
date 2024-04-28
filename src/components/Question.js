@@ -60,6 +60,7 @@ export const Question = (props) => {
           <Option
             data={item}
             setUserChoiceValue={setUserChoiceValue}
+            setUserChoices={setUserChoices}
             questionId={id}
           />
         ))}

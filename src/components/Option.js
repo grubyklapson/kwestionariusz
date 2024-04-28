@@ -2,7 +2,7 @@ export const Option = (props) => {
   const answer = props.data;
   const setUserChoiceValue = props.setUserChoiceValue;
   const questionId = props.questionId;
-
+  const setUserChoices = props.setUserChoices;
   return (
     <div className="Option" key={answer}>
       <input

@@ -9,7 +9,7 @@ export const QuestionnaireCreator = () => {
     {
       id: nanoid(),
       text: "Czy w obecnej chwili jesteś szczęśliwy?",
-      answers: ["Tak", "Nie wiem", "Nie"],
+      answers: answers,
     },
     {
       id: nanoid(),
@@ -71,12 +71,12 @@ export const QuestionnaireCreator = () => {
           Zakończ
         </button>
       </form>
-      <div className="results">
+      {/* <div className="results">
         <h2>Wyniki</h2>
         {userChoices.map((item) => (
           <p>{item}</p>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };
